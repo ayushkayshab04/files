@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ayush Kumar – Projects</title>
+<meta name="description" content="Projects by Ayush Kumar, software engineer working with React, React Native, Next.js and Node.js.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E8ECEF; --surface:#F6F8F9; --ink:#14202B; --muted:#56636E; --line:#C5CED5; --accent:#1F4FFF; --on-accent:#fff;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0F161D; --surface:#17212A; --ink:#E7EDF1; --muted:#93A1AC; --line:#2B3946; --accent:#6B8CFF; --on-accent:#0F161D}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:68rem;margin:0 auto;padding:0 1.5rem}
+
+/* Header */
+.top{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0}
+.top a{text-decoration:none;font-weight:500}
+.top nav{display:flex;gap:1.5rem}
+.top nav a:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* Hero */
+.hero{padding:clamp(3rem,9vw,7rem) 0 clamp(2.5rem,6vw,4.5rem)}
+.hero h1{font:700 clamp(2.5rem,8vw,6rem)/.98 var(--display);letter-spacing:-.035em;margin:0;max-width:14ch;text-wrap:balance}
+.hero p{max-width:34rem;margin:1.75rem 0 0;color:var(--muted);font-size:1.2rem}
+.hero .cta{display:inline-block;margin-top:2rem;padding:.85rem 1.4rem;background:var(--accent);color:var(--on-accent);border-radius:999px;font-weight:500;text-decoration:none}
+.hero .cta:hover{filter:brightness(1.1)}
+
+/* Filters */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;padding:1.25rem 0;border-top:1px solid var(--ink)}
+.filters button{font:500 .95rem var(--body);padding:.45rem .95rem;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.filters button:hover{border-color:var(--ink)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* Project index */
+.index{list-style:none;margin:0;padding:0}
+.project{display:grid;grid-template-columns:12rem 1fr auto;gap:1.5rem;align-items:center;padding:1.5rem 0;border-top:1px solid var(--line)}
+.project:last-child{border-bottom:1px solid var(--line)}
+.thumb{aspect-ratio:3/3;border-radius:6px;overflow:hidden;background:var(--c,var(--accent));display:grid;place-items:center;color:#fff;font:700 2.5rem var(--display)}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb img.contain{object-fit:contain;padding:.5rem}
+.project h2{font:700 clamp(1.5rem,3.5vw,2.25rem)/1.1 var(--display);letter-spacing:-.02em;margin:0 0 .4rem}
+.project h2 a{text-decoration:none}
+.project h2 a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
+.project p{margin:0;color:var(--muted);max-width:38rem}
+.meta{display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;font-size:.95rem;color:var(--muted);text-align:right;max-width:15rem}
+.tags{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:flex-end}
+.tags span{padding:.15rem .6rem;border:1px solid var(--line);border-radius:999px;font-size:.85rem}
+.links{display:flex;gap:1rem}
+.links a{color:var(--ink);font-weight:500}
+.empty{padding:2rem 0;color:var(--muted)}
+
+/* About + Contact */
+section.block{padding:clamp(3rem,7vw,5.5rem) 0 0}
+.block h2.title{font:700 clamp(1.75rem,4vw,2.75rem)/1.1 var(--display);letter-spacing:-.025em;margin:0 0 1.25rem}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.about p{margin:0 0 1rem;max-width:34rem}
+.skills{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.skills li{background:var(--surface);padding:.4rem .9rem;border-radius:6px;font-size:.95rem}
+.contact a.big{display:inline-block;font:700 clamp(1.5rem,5vw,3.25rem)/1.1 var(--display);letter-spacing:-.03em;text-decoration-thickness:3px;text-underline-offset:8px;text-decoration-color:var(--accent);word-break:break-all}
+.social{display:flex;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap}
+footer{padding:4rem 0 3rem;color:var(--muted);font-size:.9rem}
+
+@media (max-width:44rem){
+  .project{grid-template-columns:6.5rem 1fr;gap:1rem}
+  .meta{grid-column:1 / -1;align-items:flex-start;text-align:left}
+  .tags{justify-content:flex-start}
+  .thumb{font-size:1.5rem}
+  .about{grid-template-columns:1fr;gap:2rem}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a href="#top" id="top" data-fill="name">Ayush Kumar</a>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1 data-fill="headline">I build tools people actually use.</h1>
+      <p data-fill="intro">I’m a developer and designer based in your city. Below are the projects I’m proudest of, with the story behind each one.</p>
+      <a class="cta" href="#work">See my projects</a>
+    </section>
+
+    <section id="work" aria-labelledby="work-title">
+      <h2 id="work-title" class="title" style="position:absolute;left:-9999px">Projects</h2>
+      <div class="filters" id="filters" role="group" aria-label="Filter projects by type"></div>
+      <ul class="index" id="index"></ul>
+    </section>
+
+    <section id="about" class="block">
+      <div class="about">
+        <div>
+          <h2 class="title">About</h2>
+          <p data-fill="about1">Write two or three sentences about who you are and what you care about. Keep it specific: what you build, who it’s for, and what you’re learning.</p>
+          <p data-fill="about2">Mention how you like to work, or what kind of projects you’re looking for next.</p>
+        </div>
+        <div>
+          <h2 class="title">Skills</h2>
+          <ul class="skills" id="skills"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="block contact">
+      <h2 class="title">Contact</h2>
+      <a class="big" id="email" href="#">hello@example.com</a>
+      <div class="social" id="social"></div>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> <span data-fill="name">Ayush Kumar</span></footer>
+</div>
+
+<script>
+/* ============ EDIT THIS SECTION ============ */
+const SITE = {
+  name: "Ayush Kumar",
+  headline: "Creative solutions to unique problems.",
+  intro: "I’m a software engineer in Ambala, Haryana. I build web and mobile products with React, React Native and Next.js, from immersive 3D showrooms to everyday apps.",
+  about1: "I’m driven by curiosity, creativity and problem-solving. Technology isn’t just about writing code. It’s about understanding a challenge and engineering a meaningful, efficient solution that makes a real difference.",
+  about2: "I’m based in Ambala, Haryana, and I care most about finding creative answers to problems that don’t have an obvious one.",
+  email: "ayushkayshab04@gmail.com",
+  social: [
+    { label: "GitHub", url: "https://github.com/ayushkayshab04" },
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/ayush-kumar-348666150/" }
+  ],
+  skills: ["React", "React Native", "Next.js", "Node.js", "PostgreSQL", "TypeScript", "Firebase"]
+};
+
+// category drives the filter buttons; tags are shown on each project.
+// linkLabel / link2Label set the text of the links. Leave a link empty to hide it.
+const PROJECTS = [
+  {
+    title: "Titan Virtual Showroom",
+    category: "Web",
+    description: "An immersive virtual jewelry showroom for Titan Group. I built the React frontend and connected it to Unreal Engine through an iframe and event-based messaging, giving shoppers an interactive 3D product experience.",
+    tags: ["React.js", "JavaScript", "Unreal Engine", "3D experience", "API integration"],
+    image: "images/titan-vsc.jpg",
+    color: "#B45309",
+    link: "https://drive.google.com/file/d/1aF1afxjhpogYYgajyhl4CO0slXYBxPSo/view?usp=drive_link",
+    linkLabel: "View project"
+  },
+  {
+    title: "Asian Paints WoodTech",
+    category: "Web",
+    description: "As Frontend Lead, I drove the frontend architecture and development of a scalable web application. I owned reusable components, API integrations, performance optimization, debugging and delivery.",
+    tags: ["React.js", "JavaScript", "Frontend architecture", "Component design", "Leadership"],
+    image: "images/asian-paints.jpg",
+    color: "#1F4FFF",
+    link: "https://drive.google.com/file/d/1qTVx8qgDRUvYnhMhye9qrszcTP_BkAna/view?usp=sharing",
+    linkLabel: "View project"
+  },
+  {
+    title: "MXTRK",
+    category: "Web",
+    description: "A responsive progressive web app for tracking vehicle maintenance. It supports multiple owned and co-owned vehicles, maintenance schedules and servicing cycles.",
+    tags: ["React.js", "JavaScript", "PWA", "Responsive design"],
+    image: "images/mxtrk.jpg",
+    color: "#0F8B6D",
+    link: "https://app.mxtrk.co/",
+    linkLabel: "Live site"
+  },
+  {
+    title: "Shree Harivansh",
+    category: "Mobile",
+    description: "A full e-commerce mobile app for a traditional clothing and accessories brand. I built product browsing, authentication, cart, order processing, inventory integration and Firebase push notifications.",
+    tags: ["React Native", "TypeScript", "Firebase", "Firestore", "E-commerce"],
+    image: "images/shree-harivansh.png", fit: "contain",
+    color: "#FDB637",
+    link: "https://ayushkayshab04.github.io/shreeHArivansh-download/",
+    linkLabel: "Get the app"
+  }
+];
+/* ============ END OF EDIT SECTION ============ */
+
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+
+document.querySelectorAll("[data-fill]").forEach(el => { el.textContent = SITE[el.dataset.fill]; });
+document.title = SITE.name + " – Projects";
+$("#year").textContent = new Date().getFullYear();
+$("#email").textContent = SITE.email;
+$("#email").href = "mailto:" + SITE.email;
+$("#skills").innerHTML = SITE.skills.map(s => `<li>${esc(s)}</li>`).join("");
+$("#social").innerHTML = SITE.social.map(s => `<a href="${esc(s.url)}" rel="noopener">${esc(s.label)}</a>`).join("");
+
+const tags = ["All", ...new Set(PROJECTS.map(p => p.category))];
+let active = "All";
+
+function renderFilters() {
+  $("#filters").innerHTML = tags.map(t =>
+    `<button type="button" aria-pressed="${t === active}" data-tag="${esc(t)}">${esc(t)}</button>`).join("");
+}
+
+function renderProjects() {
+  const list = PROJECTS.filter(p => active === "All" || p.category === active);
+  if (!list.length) { $("#index").innerHTML = `<li class="empty">No projects of this type yet.</li>`; return; }
+  $("#index").innerHTML = list.map(p => {
+    const thumb = p.image
+      ? `<img src="${esc(p.image)}" alt="" loading="lazy"${p.fit === "contain" ? ' class="contain"' : ""}>`
+      : esc(p.title.charAt(0));
+    const title = p.link
+      ? `<a href="${esc(p.link)}" rel="noopener">${esc(p.title)}</a>` : esc(p.title);
+    const links = [
+      p.link ? `<a href="${esc(p.link)}" rel="noopener">${esc(p.linkLabel || "View project")}</a>` : "",
+      p.link2 ? `<a href="${esc(p.link2)}" rel="noopener">${esc(p.link2Label || "Source code")}</a>` : ""
+    ].join("");
+    return `<li class="project">
+      <div class="thumb" style="--c:${esc(p.color || "")}" aria-hidden="true">${thumb}</div>
+      <div><h2>${title}</h2><p>${esc(p.description)}</p></div>
+      <div class="meta">${p.year ? `<span>${esc(p.year)}</span>` : ""}
+        <div class="tags">${p.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>
+        <div class="links">${links}</div></div>
+    </li>`;
+  }).join("");
+}
+
+$("#filters").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  active = b.dataset.tag; renderFilters(); renderProjects();
+});
+
+renderFilters(); renderProjects();
+</script>
+</body>
+</html>
